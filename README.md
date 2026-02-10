@@ -1,27 +1,53 @@
 # PupTrails
 
-PupTrails is a Windows WPF application designed to help manage rescue/shelter operations for dogs, including intake, medical history, adoptions, and reporting.
+PupTrails is a Windows WPF application built for dog rescue and shelter operations. It centralizes intake, medical history, adoptions, and reporting in one desktop workflow.
 
-## Key Features
-- Animal intake and profile management
-- Vet visit tracking and vaccinations
-- Adoption workflows and record keeping
-- Reporting and exports
-- Data management utilities
+## Highlights
+- Animal intake, profiles, and status tracking
+- Vet visits, services, and vaccination history
+- Adoptions and adopter records
+- Expenses, income, and reporting exports
+- Data utilities and maintenance tools
 
-## Licensing & Activation
-PupTrails is proprietary software and **not open source**.  
-Use requires a paid license and **activation by the owner**.
-There is a 14 day trial for testing and viewing before a payed activation licance is required by developer.The Activation is also amung other methords hardware binded for each activation**.
+## System Requirements
+- Windows 10 or newer
+- .NET 8 Desktop Runtime
 
-If you are interested in purchasing a license or arranging activation, contact:
+## Build and Run
+1. Open `PupTrailsV3.sln` in Visual Studio 2022 or newer.
+2. Restore NuGet packages.
+3. Build and run the `PupTrailsV3` project.
 
-**Owner:** <YOUR Buggsy>  
-**Email:** <YOUR buggsy1979@gmail.com>  
+## Data Storage
+PupTrails stores data in a local SQLite database and keeps attachments, logs, and backups under:
 
+`PupTrails\PupTrailsDocs\`
 
-## Status
-This repository is provided for evaluation, licensing, and distribution by the owner only.
+Key folders include:
+- `PupTrailsDocs\data` (database)
+- `PupTrailsDocs\attachments` (photos, receipts)
+- `PupTrailsDocs\backups` (automatic and manual backups)
+- `PupTrailsDocs\logs` (diagnostics)
+
+## Licensing and Activation
+PupTrails is proprietary software and not open source.
+
+- A free 14-day trial is included for evaluation.
+- After the trial ends, a paid activation key is required.
+- Each activation is hardware-bound to a specific machine.
+- License activation is handled by the owner.
+
+If you need a trial extension, purchase a license, or request activation, contact:
+
+**Owner:** Buggsy
+**Email:** buggsy1979@gmail.com
+
+## Usage Terms
+- This repository is provided for evaluation and licensing by the owner only.
+- Redistribution, resale, or public deployment without a paid license is not permitted.
+
+## Support
+For licensing, activation, or technical questions, email the owner.
 
 ## Copyright
-© 2026 <Buggsy>. All rights reserved.
+© 2026 Buggsy. All rights reserved.
