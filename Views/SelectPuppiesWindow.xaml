@@ -1,0 +1,144 @@
+<Window x:Class="PupTrailsV3.Views.SelectPuppiesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Manage Puppy Groups" Height="650" Width="900" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="{StaticResource DarkBackground}">
+    <Border Padding="25">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel VerticalAlignment="Top">
+                <!-- Title -->
+                <TextBlock Text="Manage Puppy Groups" FontSize="22" FontWeight="Bold" Foreground="{StaticResource PrimaryText}" Margin="0,0,0,20"/>
+
+            <!-- Tab-like selection -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,15">
+                <RadioButton x:Name="NewGroupRadio" Content="Create New Group" Foreground="{StaticResource PrimaryText}" FontSize="13" Margin="0,0,20,0" IsChecked="True" Checked="GroupMode_Changed"/>
+                <RadioButton x:Name="ExistingGroupRadio" Content="Add to Existing Group" Foreground="{StaticResource PrimaryText}" FontSize="13" Margin="0,0,20,0" Checked="GroupMode_Changed"/>
+                <RadioButton x:Name="ManageGroupsRadio" Content="Manage Groups" Foreground="{StaticResource PrimaryText}" FontSize="13" Margin="0,0,20,0" Checked="GroupMode_Changed"/>
+                <RadioButton x:Name="DeleteGroupRadio" Content="Delete Groups" Foreground="{StaticResource PrimaryText}" FontSize="13" Checked="GroupMode_Changed"/>
+            </StackPanel>
+
+            <!-- New Group Section -->
+            <Border x:Name="NewGroupSection" Background="{StaticResource DarkCardBackground}" Padding="15" CornerRadius="6" Margin="0,0,0,15" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}">
+                <StackPanel>
+                    <TextBlock Text="New Group Name:" Foreground="{StaticResource PrimaryText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <TextBox x:Name="NewGroupNameBox" Padding="12" FontSize="13" MinHeight="48" Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="Date Created (YYYY-MM-DD):" Foreground="{StaticResource PrimaryText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <TextBox x:Name="GroupDateCreatedBox" Padding="12" FontSize="13" MinHeight="48" Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="Select Puppies to Add:" Foreground="{StaticResource PrimaryText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <ListBox x:Name="PuppiesListBox" Background="{StaticResource DarkBackground}" Height="220" SelectionMode="Multiple" Margin="0,0,0,10" Foreground="{StaticResource PrimaryText}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding DisplayText}" Foreground="{StaticResource PrimaryText}" FontSize="12" IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Content="✓ Add Selected" Click="AddSelectedToNewGroup_Click" Background="{StaticResource AccentBlue}" Foreground="White" Margin="0,0,0,10" Padding="12,8" FontSize="12" FontWeight="SemiBold" Cursor="Hand" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Existing Group Section -->
+            <Border x:Name="ExistingGroupSection" Background="{StaticResource DarkCardBackground}" Padding="15" CornerRadius="6" Margin="0,0,0,15" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Select Group:" Foreground="{StaticResource PrimaryText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="ExistingGroupsCombo" Padding="10" FontSize="13" MinHeight="48" SelectionChanged="ExistingGroup_SelectionChanged" SelectedValuePath="." DisplayMemberPath="."/>
+                        <Button Grid.Column="1" Content="View Group" Click="ViewGroup_Click" Background="{StaticResource AccentBlue}" Foreground="White" Margin="8,0,0,0" Padding="15,5" FontSize="12" FontWeight="SemiBold" Cursor="Hand"/>
+                    </Grid>
+                    
+                    <!-- Group Members Display -->
+                    <Border x:Name="GroupMembersPanel" Background="{StaticResource DarkBackground}" Padding="10" CornerRadius="4" Margin="0,0,0,10" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}" Visibility="Collapsed">
+                        <StackPanel>
+                            <TextBlock Text="Current Group Members:" Foreground="{StaticResource AccentBlue}" FontSize="12" FontWeight="Bold" Margin="0,0,0,8"/>
+                            <ListBox x:Name="GroupMembersList" Background="Transparent" BorderThickness="0" Height="120" Foreground="{StaticResource PrimaryText}" FontSize="12">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="0,2">
+                                            <TextBlock Text="• " Foreground="{StaticResource AccentGreen}" FontWeight="Bold" Margin="0,0,5,0"/>
+                                            <TextBlock Text="{Binding}" Foreground="{StaticResource PrimaryText}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </Border>
+                    
+                    <TextBlock Text="Select Puppies to Add:" Foreground="{StaticResource PrimaryText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <ListBox x:Name="ExistingGroupPuppiesBox" Background="{StaticResource DarkBackground}" Height="180" SelectionMode="Multiple" Margin="0,0,0,10" Foreground="{StaticResource PrimaryText}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding DisplayText}" Foreground="{StaticResource PrimaryText}" FontSize="12" IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Content="✓ Add Selected" Click="AddSelectedToExistingGroup_Click" Background="{StaticResource AccentBlue}" Foreground="White" Margin="0,0,0,10" Padding="12,8" FontSize="12" FontWeight="SemiBold" Cursor="Hand" HorizontalAlignment="Right"/>
+                    
+                    <!-- Add New Animal to Group Button -->
+                    <Button Content="+ Add New Animal to This Group" Click="AddNewAnimalToGroup_Click" Background="{StaticResource AccentGreen}" Foreground="White" Margin="0,0,0,10" Padding="10,8" FontSize="12" FontWeight="SemiBold" Cursor="Hand" HorizontalAlignment="Stretch"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Delete Group Section -->
+            <Border x:Name="DeleteGroupSection" Background="{StaticResource DarkCardBackground}" Padding="15" CornerRadius="6" Margin="0,0,0,15" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Select Groups to Delete:" Foreground="{StaticResource PrimaryText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <TextBlock Text="⚠️ Warning: Deleting a group will remove the group name from all animals, but the animals themselves will NOT be deleted." Foreground="{StaticResource AccentOrange}" FontSize="11" Margin="0,0,0,10" TextWrapping="Wrap"/>
+                    <ListBox x:Name="GroupsToDeleteListBox" Background="{StaticResource DarkBackground}" Height="300" SelectionMode="Multiple" Margin="0,0,0,10" Foreground="{StaticResource PrimaryText}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding DisplayText}" Foreground="{StaticResource PrimaryText}" FontSize="12" IsChecked="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Button Content="🗑️ Delete Selected Groups" Click="DeleteSelectedGroups_Click" Background="{StaticResource AccentRed}" Foreground="White" Margin="0,0,0,10" Padding="12,8" FontSize="12" FontWeight="SemiBold" Cursor="Hand" HorizontalAlignment="Right"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Manage Groups Section -->
+            <Border x:Name="ManageGroupsSection" Background="{StaticResource DarkCardBackground}" Padding="15" CornerRadius="6" Margin="0,0,0,15" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="Select Group(s) to Manage or Delete:" Foreground="{StaticResource PrimaryText}" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                    <TextBlock Text="Select one or more groups to manage or delete. Double-click to open group details." Foreground="{StaticResource SecondaryText}" FontSize="11" Margin="0,0,0,10" TextWrapping="Wrap"/>
+                    <ListBox x:Name="ManageGroupsListBox" Background="{StaticResource DarkBackground}" Height="350" SelectionMode="Multiple" Margin="0,0,0,10" Foreground="{StaticResource PrimaryText}" MouseDoubleClick="ManageGroup_DoubleClick">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="10" Margin="0,2" Background="{StaticResource DarkCardBackground}" CornerRadius="4" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="0,0,10,0" Focusable="False"/>
+                                        <StackPanel Grid.Column="1" Background="Transparent" MouseLeftButtonDown="GroupItem_MouseDown">
+                                            <TextBlock Text="{Binding GroupName}" Foreground="{StaticResource AccentBlue}" FontSize="14" FontWeight="Bold" IsHitTestVisible="False"/>
+                                            <TextBlock Text="{Binding MemberCountText}" Foreground="{StaticResource SecondaryText}" FontSize="11" Margin="0,2,0,0" IsHitTestVisible="False"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="2" Text="→" Foreground="{StaticResource AccentGreen}" FontSize="18" VerticalAlignment="Center" Margin="10,0,0,0" IsHitTestVisible="False"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                        <Button Content="🗑️ Delete Selected" Click="DeleteGroupsFromManage_Click" Background="{StaticResource AccentRed}" Foreground="White" Margin="0,0,10,0" Padding="12,8" FontSize="12" FontWeight="SemiBold" Cursor="Hand"/>
+                        <Button Content="📋 Open Group Details" Click="OpenGroupDetails_Click" Background="{StaticResource AccentBlue}" Foreground="White" Padding="12,8" FontSize="12" FontWeight="SemiBold" Cursor="Hand"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                <Button Content="+ Add New Animal" Click="AddNewAnimal_Click" Background="{StaticResource AccentGreen}" Foreground="White" Padding="15,10" FontSize="13" FontWeight="SemiBold" Cursor="Hand" Margin="0,0,10,0"/>
+                <Button Content="🗑️ Delete" Click="DeleteButton_Click" Background="{StaticResource AccentRed}" Foreground="White" Padding="15,10" FontSize="13" FontWeight="SemiBold" Cursor="Hand" Margin="0,0,10,0"/>
+                <Button Content="Cancel" Click="Cancel_Click" Width="100" Height="40" Margin="0,0,10,0" Background="#555555" Cursor="Hand" Foreground="White" FontSize="13" FontWeight="SemiBold"/>
+                <Button Content="Save" Click="Save_Click" Width="100" Height="40" Background="{StaticResource AccentGreen}" Foreground="White" Cursor="Hand" FontWeight="Bold" FontSize="13"/>
+            </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</Window>

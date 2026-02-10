@@ -1,0 +1,58 @@
+<Window x:Class="PupTrailsV3.Views.AddAdoptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Adoption" Height="650" Width="500"
+        WindowStartupLocation="CenterOwner"
+        Background="{StaticResource DarkBackground}">
+    <Border Padding="25">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel VerticalAlignment="Top">
+                <!-- Title -->
+                <TextBlock Text="Record Adoption" FontSize="20" FontWeight="Bold" Foreground="{StaticResource AccentBlue}" Margin="0,0,0,20"/>
+
+            <!-- Animal -->
+            <TextBlock Text="Animal Name" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <ComboBox Name="AnimalBox" Margin="0,0,0,15" Padding="12" Height="48" FontSize="13" DisplayMemberPath="Name" TextSearch.TextPath="Name"/>
+
+            <!-- Adopter -->
+            <TextBlock Text="Adopter Name" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <ComboBox Name="AdopterBox" Margin="0,0,0,15" Padding="12" Height="48" FontSize="13" DisplayMemberPath="Name" TextSearch.TextPath="Name"/>
+
+            <!-- Date -->
+            <TextBlock Text="Adoption Date (YYYY-MM-DD)" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <TextBox Name="DateTextBox" Margin="0,0,0,15" Padding="12" Height="48" FontSize="13"/>
+
+            <!-- Fee -->
+            <TextBlock Text="Adoption Fee ($)" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <TextBox Name="FeeBox" Margin="0,0,0,15" Padding="12" Height="48" FontSize="13"/>
+
+            <!-- Deposit -->
+            <TextBlock Text="Deposit for Adoption ($)" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <TextBox Name="DepositBox" Margin="0,0,0,15" Padding="12" Height="48" FontSize="13"/>
+
+            <!-- Deposit Date -->
+            <TextBlock Text="Date Deposit Received (YYYY-MM-DD)" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <TextBox Name="DepositDateTextBox" Margin="0,0,0,15" Padding="12" Height="48" FontSize="13"/>
+
+            <!-- Full Payment Date -->
+            <TextBlock Text="Full Adoption Payment Date (YYYY-MM-DD)" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <TextBox Name="FullPaymentDateTextBox" Margin="0,0,0,15" Padding="12" Height="48" FontSize="13"/>
+
+            <!-- Payment Status -->
+            <CheckBox Name="PaidCheckBox" Content="Payment Received" Margin="0,0,0,20" VerticalAlignment="Center" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+
+            <!-- Notes -->
+            <TextBlock Text="Notes" FontWeight="Bold" Margin="0,0,0,6" Foreground="{StaticResource PrimaryText}" FontSize="13"/>
+            <TextBox Name="NotesBox" Margin="0,0,0,20" Padding="12" Height="100" FontSize="13" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Reset" Click="Reset_Click" Width="100" Height="40" Margin="0,0,10,0" Background="{StaticResource AccentOrange}" Cursor="Hand" Foreground="White" FontSize="13" FontWeight="SemiBold"/>
+                <Button Content="Delete" Click="Delete_Click" Width="100" Height="40" Margin="0,0,10,0" Background="{StaticResource AccentRed}" Cursor="Hand" Foreground="White" FontSize="13" FontWeight="SemiBold"/>
+                <Button Content="Cancel" Click="Cancel_Click" Width="100" Height="40" Margin="0,0,10,0" Background="#555555" Cursor="Hand" Foreground="White" FontSize="13" FontWeight="SemiBold"/>
+                <Button Content="Save" Click="Save_Click" Width="100" Height="40" Background="{StaticResource AccentGreen}" Foreground="White" Cursor="Hand" FontWeight="Bold" FontSize="13"/>
+            </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</Window>

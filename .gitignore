@@ -1,0 +1,21 @@
+# Build artifacts
+bin/
+obj/
+publish/
+
+# IDE/editor files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Excluded projects
+LicenseGenerator/
+PupTrailsFinance/
+
+# Backups
+*_backup*/
+PupTrailsV3_Backup_*/
+PupTrails_backup_*/

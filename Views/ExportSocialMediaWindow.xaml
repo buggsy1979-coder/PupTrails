@@ -1,0 +1,133 @@
+<Window x:Class="PupTrailsV3.Views.ExportSocialMediaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Export for Social Media" Height="700" Width="1100" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="{StaticResource DarkBackground}">
+    <Grid Background="{StaticResource DarkBackground}" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock x:Name="TitleText" Text="Export for Facebook" FontSize="24" FontWeight="Bold" Foreground="{StaticResource PrimaryText}"/>
+            <TextBlock Text="Select an animal and choose which information to include in your social media post" FontSize="13" Foreground="{StaticResource SecondaryText}" Margin="0,5,0,0"/>
+        </StackPanel>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="450"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Panel - Selection Options -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,15,0">
+                <StackPanel>
+                    <!-- Animal Selection -->
+                    <Border Background="{StaticResource DarkCardBackground}" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                        <StackPanel>
+                            <TextBlock Text="Select Animal" FontSize="16" FontWeight="Bold" Foreground="{StaticResource PrimaryText}" Margin="0,0,0,12"/>
+                            <ComboBox x:Name="AnimalComboBox" SelectionChanged="AnimalComboBox_SelectionChanged" 
+                                      DisplayMemberPath="Name" Padding="12" FontSize="13" MinHeight="45"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Section Selection -->
+                    <Border Background="{StaticResource DarkCardBackground}" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                        <StackPanel>
+                            <Grid Margin="0,0,0,15">
+                                <TextBlock Text="Include Information" FontSize="16" FontWeight="Bold" Foreground="{StaticResource PrimaryText}" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Content="Select All" Click="SelectAll_Click" Background="{StaticResource AccentGreen}" Foreground="White" Padding="10,6" FontSize="11" Margin="0,0,5,0" BorderThickness="0"/>
+                                    <Button Content="Deselect All" Click="DeselectAll_Click" Background="{StaticResource AccentRed}" Foreground="White" Padding="10,6" FontSize="11" BorderThickness="0"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Photos Section -->
+                            <CheckBox x:Name="IncludePhotosCheckBox" Content="📷 Photos" IsChecked="True" Foreground="{StaticResource PrimaryText}" 
+                                      FontSize="14" FontWeight="SemiBold" Margin="0,0,0,15" Checked="SectionCheckBox_Changed" Unchecked="SectionCheckBox_Changed"/>
+
+                            <!-- Added Animals Section -->
+                            <CheckBox x:Name="IncludeAnimalInfoCheckBox" Content="🐕 Added Animals (Basic Information)" IsChecked="True" 
+                                      Foreground="{StaticResource PrimaryText}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"
+                                      Checked="AnimalInfoCheckBox_Changed" Unchecked="AnimalInfoCheckBox_Changed"/>
+                            <StackPanel x:Name="AnimalInfoFields" Margin="25,0,0,15">
+                                <CheckBox x:Name="IncludeNameCheckBox" Content="Name" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeBreedCheckBox" Content="Breed" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeSexCheckBox" Content="Sex" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeAgeCheckBox" Content="Age/DOB" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeStatusCheckBox" Content="Status" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeWeightCheckBox" Content="Weight" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeCollarColorCheckBox" Content="Collar Color" IsChecked="False" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeIntakeDateCheckBox" Content="Intake Date" IsChecked="False" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeNotesCheckBox" Content="Notes" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                            </StackPanel>
+
+                            <!-- Vet Information Section -->
+                            <CheckBox x:Name="IncludeVetInfoCheckBox" Content="🏥 Vet Information" IsChecked="True" 
+                                      Foreground="{StaticResource PrimaryText}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,8"
+                                      Checked="VetInfoCheckBox_Changed" Unchecked="VetInfoCheckBox_Changed"/>
+                            <StackPanel x:Name="VetInfoFields" Margin="25,0,0,0">
+                                <CheckBox x:Name="IncludeVetVisitDatesCheckBox" Content="Vet Visit Dates" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeVaccinationsCheckBox" Content="Vaccinations Given" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeVaccinationDatesCheckBox" Content="Vaccination Dates" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeSpayedNeuteredCheckBox" Content="Spayed/Neutered Status" IsChecked="True" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeWormingCheckBox" Content="Worming Treatment" IsChecked="False" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeDeFleeingCheckBox" Content="De-fleeing Treatment" IsChecked="False" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeDentalCheckBox" Content="Dental Treatment" IsChecked="False" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                                <CheckBox x:Name="IncludeVetNotesCheckBox" Content="Vet Notes" IsChecked="False" Foreground="{StaticResource SecondaryText}" Margin="0,3" Checked="FieldCheckBox_Changed" Unchecked="FieldCheckBox_Changed"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Right Panel - Preview -->
+            <Border Grid.Column="1" Background="{StaticResource DarkCardBackground}" BorderThickness="1" BorderBrush="{StaticResource DarkBorder}" CornerRadius="8" Padding="20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Preview" FontSize="16" FontWeight="Bold" Foreground="{StaticResource PrimaryText}" Margin="0,0,0,12"/>
+
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,0,15">
+                        <StackPanel>
+                            <!-- Photos Preview -->
+                            <StackPanel x:Name="PhotosPreviewPanel" Visibility="Collapsed" Margin="0,0,0,15">
+                                <TextBlock Text="Photos to be included:" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource SecondaryText}" Margin="0,0,0,8"/>
+                                <WrapPanel x:Name="PhotosPreviewWrapPanel"/>
+                            </StackPanel>
+
+                            <!-- Text Preview -->
+                            <TextBox x:Name="PreviewTextBox" 
+                                     TextWrapping="Wrap" 
+                                     IsReadOnly="True" 
+                                     Background="#2A2A2A" 
+                                     Foreground="{StaticResource PrimaryText}" 
+                                     BorderBrush="{StaticResource DarkBorder}" 
+                                     Padding="12" 
+                                     FontSize="13" 
+                                     MinHeight="300"
+                                     VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <!-- Character Count -->
+                    <TextBlock x:Name="CharCountText" Grid.Row="2" Text="Character Count: 0" FontSize="11" Foreground="{StaticResource SecondaryText}" HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="📋 Copy to Clipboard" Click="CopyToClipboard_Click" Background="{StaticResource AccentBlue}" Foreground="White" Padding="15,10" Margin="0,0,10,0" Width="180" FontSize="13" FontWeight="SemiBold"/>
+            <Button Content="💾 Save as Word" Click="SaveAsWord_Click" Background="{StaticResource AccentGreen}" Foreground="White" Padding="15,10" Margin="0,0,10,0" Width="150" FontSize="13" FontWeight="SemiBold"/>
+            <Button Content="Cancel" Click="Cancel_Click" Background="#555555" Foreground="White" Padding="15,10" Width="100" FontSize="13" FontWeight="SemiBold"/>
+        </StackPanel>
+    </Grid>
+</Window>
