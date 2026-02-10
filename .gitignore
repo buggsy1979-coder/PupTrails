@@ -15,6 +15,9 @@ publish/
 LicenseGenerator/
 PupTrailsFinance/
 
+# License keys
+LicenseKeys/
+
 # Backups
 *_backup*/
 PupTrailsV3_Backup_*/

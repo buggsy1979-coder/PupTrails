@@ -736,7 +736,7 @@ namespace PupTrailsV3
                 {
                     licenseInfo = $"⚠️ LICENSE ISSUE\n\n" +
                                  $"Current Machine ID: {currentMachineId}\n\n";
-                    
+
                     if (activeLicense != null)
                     {
                         licenseInfo += $"Licensed Machine ID: {activeLicense.MachineId}\n\n" +
@@ -750,8 +750,21 @@ namespace PupTrailsV3
                     }
                     else
                     {
-                        licenseInfo += $"No active license found.\n\n" +
-                                      $"Please activate a license to use this application.";
+                        var trialStatus = Services.LicenseManager.GetTrialStatus();
+                        if (trialStatus.isActive)
+                        {
+                            var endLocal = trialStatus.trialEndsUtc?.ToLocalTime();
+                            licenseInfo += $"✅ FREE TRIAL ACTIVE\n\n" +
+                                          $"Days remaining: {trialStatus.daysRemaining}\n" +
+                                          $"Trial ends: {endLocal:MMMM dd, yyyy}\n\n" +
+                                          $"Activation is required after the trial ends.";
+                        }
+                        else
+                        {
+                            licenseInfo += $"No active license found.\n\n" +
+                                          $"{trialStatus.message}\n\n" +
+                                          $"Please activate a license to continue using this application.";
+                        }
                     }
                 }
                 

@@ -54,7 +54,7 @@
                            FontWeight="Bold" 
                            Foreground="White"
                            TextAlignment="Center"/>
-                <TextBlock Text="Enter your license information to activate the application" 
+                <TextBlock Text="Activate after your free 14-day trial ends" 
                            FontSize="14" 
                            Foreground="#E0E0E0"
                            TextAlignment="Center"
@@ -164,7 +164,7 @@
                 <Border BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="5" Padding="15" Background="#FAFAFA" Margin="0,20,0,0">
                     <StackPanel>
                         <TextBlock Text="ℹ️ About License Activation" FontWeight="Bold" FontSize="12" Margin="0,0,0,10"/>
-                        <TextBlock Text="PupTrail requires a valid license to operate. Each activation locks your license to the detected machine ID so only this device can run the app." 
+                        <TextBlock Text="PupTrail includes a free 14-day trial. After the trial ends, activation is required. Each activation locks your license to the detected machine ID so only this device can run the app." 
                                    FontSize="11" 
                                    TextWrapping="Wrap"
                                    Foreground="#666666"

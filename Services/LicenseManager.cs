@@ -1,5 +1,7 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using PupTrailsV3.Data;
 
@@ -7,6 +9,20 @@ namespace PupTrailsV3.Services
 {
     public class LicenseManager
     {
+        private const int TrialDays = 14;
+        private static readonly JsonSerializerOptions TrialJsonOptions = new JsonSerializerOptions
+        {
+            WriteIndented = true
+        };
+
+        private class TrialInfo
+        {
+            public string MachineId { get; set; } = string.Empty;
+            public DateTime StartDateUtc { get; set; }
+        }
+
+        private static string TrialInfoPath => Path.Combine(PathManager.DataDirectory, "trial.json");
+
         /// <summary>
         /// Checks if the application is properly licensed AND bound to this machine
         /// </summary>
@@ -22,7 +38,8 @@ namespace PupTrailsV3.Services
 
                     if (activeLicense == null)
                     {
-                        return false;
+                        var trialStatus = GetTrialStatus();
+                        return trialStatus.isActive;
                     }
 
                     // CRITICAL: Verify the license is bound to THIS machine
@@ -46,6 +63,106 @@ namespace PupTrailsV3.Services
             {
                 System.Diagnostics.Debug.WriteLine($"License check error: {ex.Message}");
                 return false;
+            }
+        }
+
+        public static (bool isActive, int daysRemaining, DateTime? trialEndsUtc, string message) GetTrialStatus()
+        {
+            try
+            {
+                var trialInfo = EnsureTrialInfo();
+                var currentMachineId = MachineIdGenerator.GetMachineId();
+
+                if (!string.IsNullOrWhiteSpace(trialInfo.MachineId)
+                    && !string.IsNullOrWhiteSpace(currentMachineId)
+                    && !string.Equals(trialInfo.MachineId, currentMachineId, StringComparison.OrdinalIgnoreCase))
+                {
+                    return (false, 0, null, "Trial is not valid for this machine.");
+                }
+
+                if (trialInfo.StartDateUtc == default)
+                {
+                    trialInfo.StartDateUtc = DateTime.UtcNow;
+                    SaveTrialInfo(trialInfo);
+                }
+
+                var trialEnd = trialInfo.StartDateUtc.Date.AddDays(TrialDays);
+                var remaining = (int)Math.Ceiling((trialEnd - DateTime.UtcNow).TotalDays);
+                if (remaining < 0)
+                {
+                    remaining = 0;
+                }
+
+                var isActive = DateTime.UtcNow < trialEnd;
+                var message = isActive
+                    ? $"Trial active. {remaining} day(s) remaining."
+                    : "Trial expired. Activation is required.";
+
+                return (isActive, remaining, trialEnd, message);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Trial status error: {ex.Message}");
+                return (false, 0, null, "Trial status unavailable.");
+            }
+        }
+
+        private static TrialInfo EnsureTrialInfo()
+        {
+            var trialInfo = LoadTrialInfo();
+            if (trialInfo == null)
+            {
+                trialInfo = new TrialInfo
+                {
+                    MachineId = MachineIdGenerator.GetMachineId(),
+                    StartDateUtc = DateTime.UtcNow
+                };
+                SaveTrialInfo(trialInfo);
+            }
+
+            if (string.IsNullOrWhiteSpace(trialInfo.MachineId))
+            {
+                trialInfo.MachineId = MachineIdGenerator.GetMachineId();
+                SaveTrialInfo(trialInfo);
+            }
+
+            return trialInfo;
+        }
+
+        private static TrialInfo? LoadTrialInfo()
+        {
+            try
+            {
+                if (!File.Exists(TrialInfoPath))
+                {
+                    return null;
+                }
+
+                var json = File.ReadAllText(TrialInfoPath);
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    return null;
+                }
+
+                return JsonSerializer.Deserialize<TrialInfo>(json, TrialJsonOptions);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static void SaveTrialInfo(TrialInfo trialInfo)
+        {
+            try
+            {
+                Directory.CreateDirectory(PathManager.DataDirectory);
+                var json = JsonSerializer.Serialize(trialInfo, TrialJsonOptions);
+                File.WriteAllText(TrialInfoPath, json);
+            }
+            catch
+            {
+                // Non-fatal: trial data is best-effort
             }
         }
 
