@@ -9,6 +9,23 @@ PupTrails is a Windows WPF application built for dog rescue and shelter operatio
 - Expenses, income, and reporting exports
 - Data utilities and maintenance tools
 
+## Full Feature List
+- Animal profiles with intake dates, status, and notes
+- People records (adopters, vets, and contacts)
+- Adoptions and adoption history tracking
+- Vet visits with services and vaccination details
+- Trips and trip-to-animal assignments
+- Expenses and income tracking with reporting exports
+- Money owed tracking and payment status
+- Puppy groups and group photo support
+- File attachments for photos and receipts
+- Advanced search and filtering
+- Social media export support
+- Automatic backups and restore workflow
+- SQLite data storage with portable data folders
+- Built-in logging for diagnostics
+- Data utilities and maintenance tools
+
 ## System Requirements
 - Windows 10 or newer
 - .NET 8 Desktop Runtime
