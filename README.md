@@ -1,111 +1,114 @@
-# 🐾 PupTrails - Complete Rescue Management Software
 
-**Transform Your Dog Rescue Operations with Professional Management Software**
+# 🐾 PupTrails: The Ultimate Dog Rescue & Shelter Management Solution
 
-PupTrails is the all-in-one desktop solution designed specifically for dog rescues, shelters, and foster networks. Say goodbye to scattered spreadsheets, lost paperwork, and missed follow-ups. PupTrails centralizes every aspect of your rescue operation into one powerful, easy-to-use Windows application.
+**Transform your rescue or shelter with the most comprehensive, user-friendly, and professional management software available.**
 
-## 🎯 Why Choose PupTrails?
+---
 
-### Built for Rescues, By Rescuers
-PupTrails understands the unique challenges of rescue work. Whether you're managing 5 dogs or 500, our software scales with your mission while keeping your data organized, secure, and accessible.
+## Why Choose PupTrails?
 
-### Save Time, Save More Lives
-Stop wasting hours on administrative tasks. PupTrails automates record-keeping, tracks medical histories, manages adoptions, and generates reports—freeing you to focus on what matters most: saving animals.
+PupTrails is a powerful Windows desktop application designed specifically for dog rescues, shelters, and foster networks. It centralizes every aspect of your operation—intake, medical, adoptions, finances, and more—into one seamless workflow. Built by rescuers for rescuers, PupTrails helps you save time, stay organized, and focus on what matters most: saving lives.
 
-### All Your Data, One Place
-- **Never lose track of an animal** - Complete intake and profile management
-- **Medical records at your fingertips** - Full vet visit and vaccination tracking
-- **Adoption management made easy** - Track adopters, applications, and placement history
-- **Financial clarity** - Monitor expenses, income, and money owed with detailed reporting
-- **Social media ready** - Export data for quick sharing and fundraising campaigns
+---
 
-## ✨ Comprehensive Feature Set
+## 🚀 Key Benefits
+
+- **All-in-One Management:** Intake, medical, adoptions, finances, and reporting in one place.
+- **Save Time & Reduce Errors:** Automate record-keeping, reminders, and reporting.
+- **Professional & Reliable:** Trusted by rescues and shelters for robust, secure data management.
+- **Easy to Use:** Intuitive interface designed for busy rescue teams and volunteers.
+- **Scalable:** Perfect for small foster groups or large shelters.
+
+---
+
+## ✨ Features at a Glance
 
 ### Animal Management
-- **Complete Animal Profiles** - Intake dates, status tracking, medical history, collar colors, weight tracking, and detailed notes
-- **Advanced Search & Filtering** - Find any animal instantly with powerful search tools
-- **Puppy Group Management** - Organize litters with group photos and batch tracking
-- **Status Tracking** - Monitor every animal from intake through adoption
+- Full animal profiles: intake, status, notes, collar color, weight, and more
+- Advanced search and filtering for quick access to any animal
+- Puppy group management with group photos and batch updates
+- Status tracking from intake through adoption
 
-### Medical & Care Tracking
-- **Vet Visit Records** - Document every visit with service details and costs
-- **Vaccination Management** - Track all vaccines, dates, and upcoming boosters
-- **Trip Management** - Log transport and assign animals to trips
-- **Photo & Document Storage** - Attach photos, receipts, and medical records directly to animal profiles
+### Medical & Care
+- Vet visit records: services, costs, and vaccination tracking
+- Vaccination management: all vaccines, dates, and reminders
+- Trip management: log transports and assign animals
+- Attach photos, receipts, and medical records to animal profiles
 
-### People & Adoption Management
-- **Contact Database** - Store adopters, vets, volunteers, and other contacts
-- **Adoption History** - Complete tracking from application through placement
-- **Adoption Appointments** - Schedule and manage meet-and-greets with action buttons and dialog management
-- **Adopter Records** - Keep detailed histories for follow-ups and references
+### People & Adoptions
+- Contact database: adopters, vets, volunteers, and more
+- Adoption history: track every placement and follow-up
+- Adoption appointments: schedule, manage, and track outcomes
+- Adopter records: detailed histories for references and follow-ups
 
-### Financial Management
-- **Expense Tracking** - Record and categorize all rescue expenses
-- **Income Tracking** - Monitor donations, adoption fees, and other revenue
-- **Money Owed System** - Track outstanding payments and payment status
-- **Export Reports** - Generate financial reports for board meetings, grants, and tax purposes
+### Financials & Reporting
+- Expense tracking: record and categorize all costs
+- Income tracking: donations, fees, and other revenue
+- Money owed system: track outstanding payments and payment status
+- Exportable reports for board meetings, grants, and tax purposes
 
-### Data Security & Reliability
-- **Automatic Backups** - Never lose your data with built-in backup system
-- **Easy Restore** - One-click restore from any backup point
-- **Portable Database** - SQLite storage means your data goes where you go
-- **Built-in Diagnostics** - Comprehensive logging for troubleshooting
-- **Data Utilities** - Maintenance tools to keep your system running smoothly
+### Data Security & Utilities
+- Automatic backups and easy restore
+- Portable SQLite database—your data goes where you go
+- Built-in diagnostics and logging
+- Maintenance tools to keep your system running smoothly
 
-## 💻 Technical Specifications
+---
 
-### System Requirements
-- **Operating System:** Windows 10 or newer
-- **Runtime:** .NET 8 Desktop Runtime (free from Microsoft)
-- **Disk Space:** Minimal - scales with your data
-- **Network:** Internet connection required only for activation
+## 🖥️ System Requirements
+- Windows 10 or newer
+- .NET 8 Desktop Runtime (free from Microsoft)
+- Minimal disk space (scales with your data)
+- Internet required only for activation
 
-### Data Storage Architecture
-PupTrails uses a robust SQLite database with organized folder structure:
+---
+
+## 📦 Data Storage Structure
+
+All data is stored locally for privacy and security:
 
 ```
 PupTrails\PupTrailsDocs\
-├── data\ (secure database)
-├── attachments\ (photos and receipts)
-├── backups\ (automatic and manual backups)
-└── logs\ (diagnostic information)
+├── data\         # Secure database
+├── attachments\  # Photos, receipts, documents
+├── backups\      # Automatic and manual backups
+└── logs\         # Diagnostic information
 ```
 
-## 🚀 Get Started Today
+---
 
-### **FREE 14-Day Trial**
-Test drive PupTrails risk-free for 14 days. Experience the full power of professional rescue management software with no commitment.
+## 🛠️ Getting Started
 
-### Simple Setup
 1. Download the latest release from the [Releases page](https://github.com/buggsy1979-coder/PupTrails/releases)
 2. Extract and run `PupTrails.exe`
-3. Start your 14-day trial immediately
+3. Start your **14-day free trial**—no credit card required
 4. Import your existing data or start fresh
 
-### After Your Trial
-Love PupTrails? Purchase a lifetime license for your organization. One-time payment, no subscriptions or hidden fees.
+---
 
-## 📋 Licensing Information
+## 💡 Licensing & Activation
 
-**Professional Software with Professional Support**
+- **14-Day Free Trial:** Full features, no commitment
+- **One-Time Purchase:** No subscriptions or hidden fees
+- **Hardware-Bound Activation:** Secure, single-machine licensing
+- **Direct Support:** Fast, friendly help from the developer
 
-- ✅ **14-Day Free Trial** - Full features, no credit card required
-- ✅ **One-Time Purchase** - No monthly fees or subscriptions
-- ✅ **Hardware-Bound Activation** - Secure, single-machine licensing
-- ✅ **Direct Owner Support** - Get help when you need it
+**To purchase a license, request activation, or get support, email:**
 
-**Proprietary Software Notice:** PupTrails is professional rescue management software, not open source. This repository is for evaluation, licensing, and authorized distribution only.
+**buggsy1979@gmail.com**
 
-### Licensing Options & Support
-- **Trial Extension Requests**
-- **License Purchase**
-- **Activation Support**
-- **Technical Assistance**
+---
 
-**Contact:** buggsy1979@gmail.com  
-**Developer:** Buggsy
+## 💬 Support & Contact
 
-📧 Email for pricing, activation keys, or any questions about PupTrails.
+- Trial extension requests
+- License purchase and activation
+- Technical assistance
+- Feature requests and feedback
+
+**Contact:** buggsy1979@gmail.com
+
+---
 
 ## 🛡️ Terms of Use
 
@@ -114,25 +117,15 @@ Love PupTrails? Purchase a lifetime license for your organization. One-time paym
 - Redistribution, resale, or unauthorized deployment is prohibited
 - Active license required after 14-day trial period
 
-## 💬 Support & Contact
-
-**Have questions? Need help?**
-
-Whether you're evaluating PupTrails, need activation assistance, or have technical questions, we're here to help.
-
-**Email:** buggsy1979@gmail.com
-
-We typically respond within 24 hours.
-
 ---
 
-## 🌟 Transform Your Rescue Operations
+## 🌟 Join the PupTrails Community
 
-Join the rescues already using PupTrails to stay organized, save time, and focus on their mission. 
+Rescues and shelters across the country trust PupTrails to stay organized, save time, and focus on their mission. 
 
 **[Download PupTrails Now](https://github.com/buggsy1979-coder/PupTrails/releases)** and start your free 14-day trial!
 
 ---
 
-**© 2026 Buggsy. All rights reserved.**  
+**© 2026 Buggsy. All rights reserved.**
 PupTrails is proprietary software designed for dog rescue and shelter management.
